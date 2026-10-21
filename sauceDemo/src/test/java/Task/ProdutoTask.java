@@ -1,5 +1,6 @@
 package Task;
 
+import PageObjects.CartPage;
 import PageObjects.ProdutoPage;
 import Validacao.GenericValidacao;
 import org.openqa.selenium.WebDriver;
@@ -9,6 +10,7 @@ public class ProdutoTask {
     private WebDriver driver;
     private ProdutoPage produtoPage;
     private GenericValidacao genericValidacao;
+    private CartPage cartPage;
 
     public ProdutoTask(WebDriver driver){
 
@@ -24,6 +26,7 @@ public class ProdutoTask {
         produtoPage.getCartButton().click();
         genericValidacao.validationTitlePages("Your Cart");
         genericValidacao.validationProduto();
+        cartPage.getCheckoutButton().click();
 
     }
 }
