@@ -8,6 +8,10 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import java.time.Duration;
+import java.util.HashMap;
+import java.util.Map;
+
 public class DriverManager {
 
     private static WebDriver driver;
@@ -21,6 +25,7 @@ public class DriverManager {
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("--start-maximized");
                 options.addArguments("--incognito");
+                options.setExperimentalOption("prefs", prefsSemAvisoDeSenha());
                 driver =  new ChromeDriver(options);
                 break;
 
@@ -42,15 +47,27 @@ public class DriverManager {
             case HEADLESS:
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions headlessOptions = new ChromeOptions();
-                headlessOptions.addArguments("--headless");
-                headlessOptions.addArguments("--window-size(1366, 768)");
+                headlessOptions.addArguments("--headless=new");
+                headlessOptions.addArguments("--window-size=1366,768");
+                headlessOptions.setExperimentalOption("prefs", prefsSemAvisoDeSenha());
                 driver =  new ChromeDriver(headlessOptions);
                 break;
 
 
 
         }
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     return driver;
+    }
+
+    // o Chrome mostra um aviso de "senha vazada" ao logar com secret_sauce e o aviso bloqueia os cliques
+    private static Map<String, Object> prefsSemAvisoDeSenha(){
+
+        Map<String, Object> prefs = new HashMap<>();
+        prefs.put("credentials_enable_service", false);
+        prefs.put("profile.password_manager_enabled", false);
+        prefs.put("profile.password_manager_leak_detection", false);
+        return prefs;
     }
 
     public static WebDriver getDriver(TypeBrowser type){

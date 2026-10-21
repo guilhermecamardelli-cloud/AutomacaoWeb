@@ -17,11 +17,13 @@ public class ProdutoTask {
         this.driver = driver;
         produtoPage = new ProdutoPage(this.driver);
         genericValidacao = new GenericValidacao(this.driver);
+        cartPage = new CartPage(this.driver);
 
     }
 
     public void selecionarProduto(){
 
+        genericValidacao.validationTitlePages("Products");
         produtoPage.getAddToCartButton().click();
         produtoPage.getCartButton().click();
         genericValidacao.validationTitlePages("Your Cart");

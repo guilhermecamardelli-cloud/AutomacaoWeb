@@ -15,6 +15,6 @@ public class CartPage {
 
     public WebElement getCheckoutButton(){
 
-        return driver.findElement(By.id("Checkout"));
+        return driver.findElement(By.id("checkout"));
     }
 }

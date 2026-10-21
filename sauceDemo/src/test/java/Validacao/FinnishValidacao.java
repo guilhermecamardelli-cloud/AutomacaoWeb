@@ -18,10 +18,7 @@ public class FinnishValidacao {
 
     public void validationSucessoCompra(){
 
-        try {
-            Assertions.assertEquals("Thank you for your order!", finishPage.getFinnishTextLabel().getText());
-        } catch (Exception e) {
-            e.getMessage();
-        }
+        // sem try/catch: se o texto estiver errado o teste precisa falhar
+        Assertions.assertEquals("Thank you for your order!", finishPage.getFinnishTextLabel().getText());
     }
 }

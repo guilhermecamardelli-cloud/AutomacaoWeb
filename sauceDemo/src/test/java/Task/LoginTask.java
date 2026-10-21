@@ -15,12 +15,10 @@ public class LoginTask {
 
     }
 
-    public void efetuarLogin() throws InterruptedException{
+    public void efetuarLogin(){
 
         loginPage.getUserNameInput().sendKeys("standard_user");
-        Thread.sleep(50000);
         loginPage.getPasswordInput().sendKeys("secret_sauce");
-        Thread.sleep(50000);
         loginPage.getLoginButtonInput().click();
     }
 }

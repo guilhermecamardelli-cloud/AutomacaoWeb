@@ -1,10 +1,9 @@
 package Task;
 
 import PageObjects.FinishPage;
-import PageObjects.GenericPage;
 import Validacao.FinnishValidacao;
 import Validacao.GenericValidacao;
-import org.junit.jupiter.api.BeforeEach;
+import Validacao.LoginValidacao;
 import org.openqa.selenium.WebDriver;
 
 public class FinishTask {
@@ -21,14 +20,19 @@ public class FinishTask {
 
         this.driver = driver;
         finishPage = new FinishPage(this.driver);
+        genericValidacao = new GenericValidacao(this.driver);
         finnishValidacao = new FinnishValidacao(this.driver);
+        loginValidacao = new LoginValidacao(this.driver);
     }
 
     public void finalizarCompra(){
 
+        finishPage.getFinnishButton().click();
         genericValidacao.validationTitlePages("Checkout: Complete!");
-        finishValidacao.validationSucessoCompra();
-        finnishValidacao
+        finnishValidacao.validationSucessoCompra();
+        finishPage.getMenuButton().click();
+        finishPage.getLogoutLink().click();
+        loginValidacao.validationLogout();
 
     }
 

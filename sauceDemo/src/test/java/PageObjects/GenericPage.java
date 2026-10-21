@@ -15,7 +15,7 @@ public class GenericPage {
 
     public WebElement getTextTitle(){
 
-        return driver.findElement(By.xpath("//div[@id='header_container']/div[@class='header_secondary_container']/span[@class='title']"));
+        return driver.findElement(By.xpath("//*[@id='header_container']/div[@class='header_secondary_container']/span[@class='title']"));
     }
 
     public WebElement getTextProduto(){
